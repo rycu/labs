@@ -2,53 +2,170 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-
-  constructor(props){
-
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      
+      submitMsg: null,
       text: "Test",
       email: "test@test.com",
       tel: "+0123456789",
-      custom: "",
-    }
-
+      custom: "12345",
+      checkBox: true,
+      radio: "1",
+      select: "option1"
+    };
   }
-  
-    handleChange = (e) =>{
-      this.setState({[e.target.id]: e.target.value});
+
+  handleChange = e => {
+    switch (e.target.type) {
+      case "checkbox":
+        this.setState({
+          [e.target.name]: !this.state[e.target.name],
+          submitMsg: null
+        });
+        break;
+      default:
+        this.setState({
+          [e.target.name]: e.target.value,
+          submitMsg: null
+        });
+        break;
     }
-  
+  };
+
+  handleSubmit = e => {
+    this.setState({ submitMsg: "Submit Sucsess!" });
+    e.preventDefault();
+  };
+
+  handleClearRadios = () => {
+    this.setState({ radio: null });
+  };
 
   render() {
-    return <div className="App">
+
+    return (
+      <div className="App">
         <header>
           <h1>native-validation</h1>
         </header>
-
         <section>
-          <form action="#" method="post">
+          <form onSubmit={this.handleSubmit}>
             <div>
               <ul>
                 <li>
                   <label htmlFor="text">text Input:</label>
-                  <input onChange={this.handleChange} type="text" name="text" id="text" value={this.state.text} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="text"
+                    id="text"
+                    value={this.state.text}
+                    required
+                  />
                 </li>
-                <br />
                 <li>
                   <label htmlFor="email">email Input:</label>
-                  <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={this.state.email}
+                    required
+                  />
                 </li>
-                <br />
                 <li>
                   <label htmlFor="tel">telephone Input:</label>
-                  <input onChange={this.handleChange} type="tel" name="tel" id="tel" value={this.state.tel} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="tel"
+                    name="tel"
+                    id="tel"
+                    value={this.state.tel}
+                    required
+                  />
                 </li>
-                <br />
                 <li>
                   <label htmlFor="custom">custom Input:</label>
-                  <input onChange={this.handleChange} type="text" name="custom" id="custom" value={this.state.custom} required pattern="[0-9]{5}" title="Enter 5 numbers" />
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="custom"
+                    id="custom"
+                    value={this.state.custom}
+                    required
+                    pattern="[0-9]{5}"
+                    title="Enter 5 numbers"
+                  />
+                </li>
+                <li>
+                  <label htmlFor="checkBox">check box:</label>
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="checkBox"
+                    id="checkBox"
+                    checked={this.state.checkBox}
+                    required
+                  />
+                </li>
+                <li>
+                  <fieldset>
+                    <legend> radio </legend>
+                    <label>
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio1"
+                        value="1"
+                        checked={this.state.radio === "1"}
+                        required
+                      />
+                      1
+                    </label>
+                    <label>
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio2"
+                        value="2"
+                        checked={this.state.radio === "2"}
+                        required
+                      />
+                      2
+                    </label>
+                    <label>
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio3"
+                        value="3"
+                        checked={this.state.radio === "3"}
+                        required
+                      />
+                      3
+                    </label>
+                  </fieldset>
+                  <button onClick={this.handleClearRadios}>clear radios</button>
+                </li>
+                <li>
+                  <label htmlFor="select">select:</label>
+                  <select
+                    onChange={this.handleChange}
+                    name="select"
+                    id="select"
+                    value={this.state.select}
+                    required
+                  >
+                    <option value="">please select an option</option>
+                    <option value="option1">option 1</option>
+                    <option value="option2">option 2</option>
+                    <option value="option3">option 3</option>
+                  </select>
                 </li>
               </ul>
             </div>
@@ -57,6 +174,7 @@ class App extends Component {
               <input type="submit" value="Submit" />
             </div>
           </form>
+          {this.state.submitMsg && <h3>{this.state.submitMsg}</h3>}
         </section>
 
         <footer>
@@ -80,9 +198,10 @@ class App extends Component {
             </li>
           </ul>
 
-          <p>rycu</p>
+          <p>github.com/rycu/labs/native-validation</p>
         </footer>
-      </div>;
+      </div>
+    );
   }
 }
 
