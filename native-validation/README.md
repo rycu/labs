@@ -1,4 +1,4 @@
-# ⚠️ Native Validation Lab 
+# ♿️ Native Validation Lab ⚠️
 
 A small project investigating native browser validation using HTML5 and how much of a real alternative it could be to traditional JS.
 
@@ -6,6 +6,9 @@ A small project investigating native browser validation using HTML5 and how much
 
 To improve accessibility by respecting the users chosen browser configuration.
 
+## Current Browser Coverage
+
+Includes browser coverage tables powered by [caniuse-api](https://github.com/Nyalab/caniuse-api).
 
 ## ⚛️ Made with Create React App
 
