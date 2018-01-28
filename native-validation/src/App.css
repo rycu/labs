@@ -1,7 +1,7 @@
 .App {
   padding:1em;
   max-width: 30em;
-  margin: 0 auto;
+  margin: 10em auto;
 }
 
 li{
@@ -12,3 +12,26 @@ label{
   padding-right: 1em;
 }
 
+section{
+
+  margin-bottom: 6em;
+
+}
+
+table{
+
+  width: 100%;
+  border-spacing: 0 0.15em;
+}
+
+td{
+  padding: 0.5em;
+  text-align: center;
+
+
+}
+
+th{
+   padding: 0.6em;
+  
+}

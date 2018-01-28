@@ -15,8 +15,8 @@ class App extends Component {
       radio: "1",
       select: "option1",
       browserSupport: {
-       formValidation: getSupport("form-validation"),
-       pattern: getSupport("pattern"),
+        formValidation: getSupport("form-validation"),
+        inputPattern: getSupport("input-pattern")
       }
     };
   }
@@ -47,30 +47,60 @@ class App extends Component {
     this.setState({ radio: null });
   };
 
-  bulidChart = () => {
-    
-   const browserObj = this.state.browserSupport.formValidation;
-   let browserRows = [];
-   for (let prop in browserObj) {
+  fillColour = (thisBrowser, cat) => {
+    let style = {};
+    if (!thisBrowser.n && !thisBrowser.a && !thisBrowser.y) {
+      style = { backgroundColor: "red" };
+    } else if (!thisBrowser.n && !thisBrowser.a && thisBrowser.y) {
+      style = { backgroundColor: "#3c3" };
+    } else {
+      if (
+        (cat === "n" && thisBrowser.n) ||
+        (cat === "a" && thisBrowser.n && !thisBrowser.a)
+      ) {
+        style = { backgroundColor: "red" };
+      } else if (
+        (cat === "a" && thisBrowser.a) ||
+        (cat === "y" && !thisBrowser.y) ||
+        (cat === "n" && !thisBrowser.n && thisBrowser.a)
+      ) {
+        style = { backgroundColor: "orange" };
+      } else if (cat === "y" && thisBrowser.y) {
+        style = { backgroundColor: "#3c3" };
+      }
+    }
+    return style;
+  };
 
-        //console.log(prop, ': ' ,browserObj[prop].y);
+  bulidChart = feature => {
+    const browserResults = this.state.browserSupport[feature];
+    let browserRows = [];
+    for (let prop in browserResults) {
+      //console.log(prop, ': ' ,browserResults[prop].y);
 
-        browserRows.push(<tr>
-            <td>{prop}</td>
-            <td>N: {browserObj[prop].n}</td>
-            <td>Y: {browserObj[prop].y}</td>
-          </tr>);
+      browserRows.push(
+        <tr key={prop}>
+          <th>{prop}</th>
+          <td style={this.fillColour(browserResults[prop], "n")}>
+            {browserResults[prop].n}
+          </td>
+          <td style={this.fillColour(browserResults[prop], "a")}>
+            {browserResults[prop].a}
+          </td>
+          <td style={this.fillColour(browserResults[prop], "y")}>
+            {browserResults[prop].y}
+          </td>
+        </tr>
+      );
     }
 
     return browserRows;
-  }
-
+  };
 
   render() {
+    // console.log();
 
-   // console.log();
-
-    return <div className="App">
+    return <div role="main" className="App">
         <header>
           <h1>native-validation</h1>
         </header>
@@ -137,8 +167,32 @@ class App extends Component {
           {this.state.submitMsg && <h3>{this.state.submitMsg}</h3>}
         </section>
         <section>
-          <h3>Coverage:</h3>
-          <table>{this.bulidChart()}</table>
+          <h3>Form Validation Coverage (caniuse-api):</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>browser</th>
+                <th>unavailable up to</th>
+                <th>partially supported</th>
+                <th>available since</th>
+              </tr>
+            </thead>
+            <tbody>{this.bulidChart("formValidation")}</tbody>
+          </table>
+        </section>
+        <section>
+          <h3>Input Pattern Coverage (caniuse-api):</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>browser</th>
+                <th>unavailable up to</th>
+                <th>partially supported</th>
+                <th>available since</th>
+              </tr>
+            </thead>
+            <tbody>{this.bulidChart("inputPattern")}</tbody>
+          </table>
         </section>
         <footer>
           <h3>References:</h3>
