@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { getSupport } from "caniuse-api";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,11 @@ class App extends Component {
       select: "option1",
       browserSupport: {
         formValidation: getSupport("form-validation"),
+
+
+
+
+
         inputPattern: getSupport("input-pattern")
       }
     };
@@ -112,15 +118,7 @@ class App extends Component {
                 <li>
                   <label htmlFor="text">text Input:</label>
                   <input
-                    onChange={this.handleChange}
-                    type="text"
-                    name="text"
-                    id="text"
-                    value={this.state.text}
-                    required
-                    aria-required="true"
-                  />
-                </li>
+                    onChange={this.handleChange} type="text" name="text" id="text" value={this.state.text} required aria-required="true" /> </li>
                 <li>
                   <label htmlFor="email">email Input:</label>
                   <input
