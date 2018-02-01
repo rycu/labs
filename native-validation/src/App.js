@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 import { getSupport } from "caniuse-api";
 
 class App extends Component {
@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   handleSubmit = e => {
-    this.setState({ submitMsg: "Submit Sucsess!" });
+    this.setState({ submitMsg: "Submit Success!" });
     e.preventDefault();
   };
 
@@ -100,7 +100,8 @@ class App extends Component {
   render() {
     // console.log();
 
-    return <div role="main" className="App">
+    return (
+      <div role="main" className="App">
         <header>
           <h1>native-validation</h1>
         </header>
@@ -110,47 +111,117 @@ class App extends Component {
               <ul>
                 <li>
                   <label htmlFor="text">text Input:</label>
-                  <input onChange={this.handleChange} type="text" name="text" id="text" value={this.state.text} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="text"
+                    id="text"
+                    value={this.state.text}
+                    required
+                    aria-required="true"
+                  />
                 </li>
                 <li>
                   <label htmlFor="email">email Input:</label>
-                  <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={this.state.email}
+                    required
+                    aria-required="true"
+                  />
                 </li>
                 <li>
                   <label htmlFor="tel">telephone Input:</label>
-                  <input onChange={this.handleChange} type="tel" name="tel" id="tel" value={this.state.tel} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="tel"
+                    name="tel"
+                    id="tel"
+                    value={this.state.tel}
+                    required
+                    aria-required="true"
+                  />
                 </li>
                 <li>
                   <label htmlFor="custom">custom Input:</label>
-                  <input onChange={this.handleChange} type="text" name="custom" id="custom" value={this.state.custom} required pattern="[0-9]{5}" title="Enter 5 numbers" />
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="custom"
+                    id="custom"
+                    value={this.state.custom}
+                    required
+                    aria-required="true"
+                    pattern="[0-9]{5}"
+                    title="Enter 5 numbers"
+                  />
                 </li>
                 <li>
                   <label htmlFor="checkBox">check box:</label>
-                  <input onChange={this.handleChange} type="checkbox" name="checkBox" id="checkBox" checked={this.state.checkBox} required />
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="checkBox"
+                    id="checkBox"
+                    checked={this.state.checkBox}
+                    required
+                  />
                 </li>
                 <li>
-                  <fieldset>
+                  <fieldset role="radiogroup" aria-required="true">
                     <legend> radio </legend>
                     <label>
-                      <input onChange={this.handleChange} type="radio" name="radio" id="radio1" value="1" checked={this.state.radio === "1"} required />
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio1"
+                        value="1"
+                        checked={this.state.radio === "1"}
+                        required
+                      />
                       1
                     </label>
                     <label>
-                      <input onChange={this.handleChange} type="radio" name="radio" id="radio2" value="2" checked={this.state.radio === "2"} required />
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio2"
+                        value="2"
+                        checked={this.state.radio === "2"}
+                        required
+                      />
                       2
                     </label>
                     <label>
-                      <input onChange={this.handleChange} type="radio" name="radio" id="radio3" value="3" checked={this.state.radio === "3"} required />
+                      <input
+                        onChange={this.handleChange}
+                        type="radio"
+                        name="radio"
+                        id="radio3"
+                        value="3"
+                        checked={this.state.radio === "3"}
+                        required
+                      />
                       3
                     </label>
                   </fieldset>
-                  <button onClick={this.handleClearRadios}>
-                    clear radios
-                  </button>
+                  <button onClick={this.handleClearRadios}>clear radios</button>
                 </li>
                 <li>
                   <label htmlFor="select">select:</label>
-                  <select onChange={this.handleChange} name="select" id="select" value={this.state.select} required>
+                  <select
+                    onChange={this.handleChange}
+                    name="select"
+                    id="select"
+                    value={this.state.select}
+                    required
+                    aria-required="true"
+                  >
                     <option value="">please select an option</option>
                     <option value="option1">option 1</option>
                     <option value="option2">option 2</option>
@@ -202,7 +273,10 @@ class App extends Component {
                 https://www.w3.org/WAI/tutorials/forms/validation/
               </a>
             </li>
-            {/* Forms frequently include required input that needs to be clearly identified using labels. Also, the required attribute can be added to form controls, to programmatically indicate that they are required. Most current web browsers support this attribute and will communicate missing required input to the user, using standard web browser dialog mechanisms. These dialogs are expected to respect the settings and preferences of the user in the web browser (and operating system), such as default font-size, colors, and language. --> */}
+            {/* Forms frequently include required input that needs to be clearly identified using labels. 
+                Also, the required attribute can be added to form controls, to programmatically indicate that they are required. 
+                Most current web browsers support this attribute and will communicate missing required input to the user, using standard web browser dialog mechanisms. 
+                These dialogs are expected to respect the settings and preferences of the user in the web browser (and operating system), such as default font-size, colors, and language. */}
             <li>
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel">
                 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel
@@ -217,7 +291,8 @@ class App extends Component {
 
           <p>github.com/rycu/labs/native-validation</p>
         </footer>
-      </div>;
+      </div>
+    );
   }
 }
 
