@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import { getSupport } from "caniuse-api";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,11 +16,6 @@ class App extends Component {
       select: "option1",
       browserSupport: {
         formValidation: getSupport("form-validation"),
-
-
-
-
-
         inputPattern: getSupport("input-pattern")
       }
     };
@@ -118,7 +112,15 @@ class App extends Component {
                 <li>
                   <label htmlFor="text">text Input:</label>
                   <input
-                    onChange={this.handleChange} type="text" name="text" id="text" value={this.state.text} required aria-required="true" /> </li>
+                    onChange={this.handleChange}
+                    type="text"
+                    name="text"
+                    id="text"
+                    value={this.state.text}
+                    required
+                    aria-required="true"
+                  />{" "}
+                </li>
                 <li>
                   <label htmlFor="email">email Input:</label>
                   <input
@@ -263,6 +265,21 @@ class App extends Component {
             <tbody>{this.bulidChart("inputPattern")}</tbody>
           </table>
         </section>
+        <section>
+          <p>
+            <h3>A quote from WC3:</h3>
+            Forms frequently include required input that needs to be clearly
+            identified using labels.<br />
+            Also, the required attribute can be added to form controls, to
+            programmatically indicate that they are required.<br />
+            Most current web browsers support this attribute and will
+            communicate missing required input to the user, using standard web
+            browser dialog mechanisms.<br />
+            These dialogs are expected to respect the settings and preferences
+            of the user in the web browser (and operating system), such as
+            default font-size, colors, and language.<br />
+          </p>
+        </section>
         <footer>
           <h3>References:</h3>
           <ul>
@@ -271,10 +288,6 @@ class App extends Component {
                 https://www.w3.org/WAI/tutorials/forms/validation/
               </a>
             </li>
-            {/* Forms frequently include required input that needs to be clearly identified using labels. 
-                Also, the required attribute can be added to form controls, to programmatically indicate that they are required. 
-                Most current web browsers support this attribute and will communicate missing required input to the user, using standard web browser dialog mechanisms. 
-                These dialogs are expected to respect the settings and preferences of the user in the web browser (and operating system), such as default font-size, colors, and language. */}
             <li>
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel">
                 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel
